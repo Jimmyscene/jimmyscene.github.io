@@ -84,7 +84,7 @@
           document.getElementById("places").innerHTML = "";
           map.setCenter( raleigh );
         } else {
-          document.getElementById("places").innerHTML = myPlaces.map(function(item) { return '<p>Click to remove:</p> <button style="color: red" onclick="removeMarker(event)">' + item + '</button>'}).join("");
+          document.getElementById("places").innerHTML = '<p>Click to remove:</p>' + myPlaces.map(function(item) { return  '<button style="color: red" onclick="removeMarker(event)">' + item + '</button>'}).join("");
           console.log(places[myPlaces.slice(-1)].address)
           map.setCenter(places[myPlaces.slice(-1)].address)
         }
