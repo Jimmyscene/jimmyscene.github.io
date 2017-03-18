@@ -23,7 +23,6 @@
       }
       #places {
         display: flex;
-        flex: 1;
       }
       #map {
         display: flex;
@@ -35,8 +34,8 @@
     <div id="divv">
       <input id="markerInput" type="text" placeholder="Enter a location(City, State)" />
       <button onclick="getLocation()">Add Marker</button>
+      <div id="places"></div>
     </div>
-    <div id="places"></div>
     <div id="map"></div>
     <script>
       var map, geocoder;
@@ -85,7 +84,7 @@
           document.getElementById("places").innerHTML = "";
           map.setCenter( raleigh );
         } else {
-          document.getElementById("places").innerHTML = '<p>Click these to remove markers: </p>' + myPlaces.map(function(item) { return '<button onclick="removeMarker(event)">' + item + '</button>'}).join("");
+          document.getElementById("places").innerHTML = myPlaces.map(function(item) { return '<p>Click to remove:</p> <button style="color: red" onclick="removeMarker(event)">' + item + '</button>'}).join("");
           console.log(places[myPlaces.slice(-1)].address)
           map.setCenter(places[myPlaces.slice(-1)].address)
         }
