@@ -86,8 +86,8 @@
           map.setCenter( raleigh );
         } else {
           document.getElementById("places").innerHTML = '<p>Click these to remove markers: </p>' + myPlaces.map(function(item) { return '<button onclick="removeMarker(event)">' + item + '</button>'}).join("");
-          console.log(places[myPlaces[0]].address)
-          map.setCenter(places[myPlaces[0]].address)
+          console.log(places[myPlaces.slice(-1)].address)
+          map.setCenter(places[myPlaces.slice(-1)].address)
         }
 
       }
