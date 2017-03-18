@@ -19,13 +19,15 @@
       #divv {
         width: 100%;
         display: flex;
+        flex: 1;
       }
       #places {
         display: flex;
+        flex: 1;
       }
       #map {
         display: flex;
-        flex: 5;
+        flex: 18;
        }
     </style>
   </head>
@@ -65,7 +67,7 @@
             var location = results[0].geometry.location;
             map.setCenter(location);
             var marker = addMarker(location);
-            places[address] = marker;
+            places[address] = {marker: marker, address: location} ;
             displayPlaces();
           } else {
             alert('Failure?', status)
@@ -73,7 +75,7 @@
         });
       }
       function removeMarker(e) {
-        places[e.target.innerText].setMap(null);
+        places[e.target.innerText].marker.setMap(null);
         delete places[e.target.innerText];
         displayPlaces();
       }
@@ -81,8 +83,11 @@
         var myPlaces = Object.keys(places);
         if(myPlaces.length == 0){
           document.getElementById("places").innerHTML = "";
+          map.setCenter( raleigh );
         } else {
           document.getElementById("places").innerHTML = '<p>Click these to remove markers: </p>' + myPlaces.map(function(item) { return '<button onclick="removeMarker(event)">' + item + '</button>'}).join("");
+          console.log(places[myPlaces[0]].address)
+          map.setCenter(places[myPlaces[0]].address)
         }
 
       }
